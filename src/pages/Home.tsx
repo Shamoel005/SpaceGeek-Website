@@ -1,127 +1,126 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { BookOpen, Code, Github, Terminal } from "lucide-react";
-import { categories } from "@/lib/problems";
+import { Rocket, Newspaper, Globe, Star } from "lucide-react";
+import { newsArticles } from "@/lib/space-data";
 
 const Home = () => {
+  // Get the most recent news articles
+  const recentNews = [...newsArticles].sort((a, b) => 
+    new Date(b.date).getTime() - new Date(a.date).getTime()
+  ).slice(0, 3);
+
   return (
     <div className="min-h-screen bg-background">
-      <div className="container px-4 py-16 mx-auto">
-        {/* Hero Section */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 py-12">
-          <div className="space-y-6 max-w-xl">
-            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
-              Master Data Structures &
-              <span className="text-primary"> Algorithms</span>
-            </h1>
-            <p className="text-lg text-muted-foreground">
-              Improve your coding skills by solving algorithm challenges. Practice, learn, and prepare for technical interviews.
+      {/* Hero Section */}
+      <div className="relative py-20 overflow-hidden bg-gradient-to-r from-blue-900 to-purple-900">
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=2000')] bg-cover bg-center" />
+        </div>
+        <div className="container relative px-4 mx-auto text-center text-white">
+          <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+            Explore the <span className="text-primary">Cosmos</span>
+          </h1>
+          <p className="max-w-2xl mx-auto mb-8 text-lg">
+            Discover the latest in space news, explore our solar system, and learn about groundbreaking astronomical discoveries.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button asChild size="lg">
+              <Link to="/news">Latest News</Link>
+            </Button>
+            <Button variant="outline" size="lg" className="bg-transparent border-white hover:bg-white/10">
+              <Link to="/planets">Explore Planets</Link>
+            </Button>
+          </div>
+        </div>
+      </div>
+      
+      {/* Features Section */}
+      <div className="py-16 bg-background">
+        <div className="container px-4 mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold">Discover the Universe</h2>
+            <p className="mt-4 text-muted-foreground">
+              Expand your knowledge of space and astronomy
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Button asChild size="lg">
-                <Link to="/problems">Start Practice</Link>
+          </div>
+          
+          <div className="grid gap-8 md:grid-cols-3">
+            <div className="p-6 text-center bg-card border border-border rounded-lg">
+              <div className="inline-flex items-center justify-center w-12 h-12 mb-4 bg-primary/20 rounded-full">
+                <Newspaper className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="mb-2 text-xl font-bold">Space News</h3>
+              <p className="text-muted-foreground">
+                Stay updated with the latest news, missions, and discoveries in space exploration.
+              </p>
+              <Button asChild variant="link" className="mt-4">
+                <Link to="/news">Read News</Link>
               </Button>
-              <Button variant="outline" size="lg">
-                <Github className="mr-2 h-4 w-4" />
-                View on GitHub
+            </div>
+            
+            <div className="p-6 text-center bg-card border border-border rounded-lg">
+              <div className="inline-flex items-center justify-center w-12 h-12 mb-4 bg-primary/20 rounded-full">
+                <Globe className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="mb-2 text-xl font-bold">Planet Guide</h3>
+              <p className="text-muted-foreground">
+                Explore detailed information about planets in our solar system and beyond.
+              </p>
+              <Button asChild variant="link" className="mt-4">
+                <Link to="/planets">View Planets</Link>
+              </Button>
+            </div>
+            
+            <div className="p-6 text-center bg-card border border-border rounded-lg">
+              <div className="inline-flex items-center justify-center w-12 h-12 mb-4 bg-primary/20 rounded-full">
+                <Star className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="mb-2 text-xl font-bold">New Discoveries</h3>
+              <p className="text-muted-foreground">
+                Learn about the most recent breakthroughs and discoveries in astronomy.
+              </p>
+              <Button asChild variant="link" className="mt-4">
+                <Link to="/discoveries">Explore Discoveries</Link>
               </Button>
             </div>
           </div>
-          <div className="w-full max-w-md p-1 rounded-lg overflow-hidden bg-gradient-to-br from-primary/20 to-secondary">
-            <div className="bg-card rounded-lg p-6 border border-border relative">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex space-x-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
+        </div>
+      </div>
+      
+      {/* Recent News Section */}
+      <div className="py-16 bg-card">
+        <div className="container px-4 mx-auto">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold">Recent Space News</h2>
+            <Button asChild variant="outline">
+              <Link to="/news">View All News</Link>
+            </Button>
+          </div>
+          
+          <div className="grid gap-8 md:grid-cols-3">
+            {recentNews.map((article) => (
+              <div key={article.id} className="overflow-hidden bg-background border rounded-lg border-border">
+                <div className="h-48 overflow-hidden">
+                  <img 
+                    src={article.imageUrl} 
+                    alt={article.title}
+                    className="object-cover w-full h-full transition-transform hover:scale-105"
+                  />
                 </div>
-                <div className="text-xs text-muted-foreground">solve.js</div>
+                <div className="p-5">
+                  <div className="flex items-center mb-2 text-sm text-muted-foreground">
+                    <span>{new Date(article.date).toLocaleDateString()}</span>
+                    <span className="mx-2">•</span>
+                    <span>{article.source}</span>
+                  </div>
+                  <h3 className="mb-2 text-xl font-bold">{article.title}</h3>
+                  <p className="mb-4 text-muted-foreground">{article.summary}</p>
+                  <Button asChild variant="link" className="p-0">
+                    <Link to={`/news#${article.id}`}>Read More</Link>
+                  </Button>
+                </div>
               </div>
-              <pre className="text-sm text-code-text font-mono overflow-x-auto">
-                <code>
-                  <span className="text-code-keyword">function</span>{" "}
-                  <span className="text-code-function">twoSum</span>(nums, target) {"{"}
-                  {"\n"}  <span className="text-code-keyword">const</span> map = <span className="text-code-keyword">new</span> Map();
-                  {"\n"}
-                  {"\n"}  <span className="text-code-keyword">for</span> (<span className="text-code-keyword">let</span> i = 0; i {"<"} nums.length; i++) {"{"}
-                  {"\n"}    <span className="text-code-keyword">const</span> complement = target - nums[i];
-                  {"\n"}
-                  {"\n"}    <span className="text-code-keyword">if</span> (map.has(complement)) {"{"}
-                  {"\n"}      <span className="text-code-keyword">return</span> [map.get(complement), i];
-                  {"\n"}    {"}"}
-                  {"\n"}
-                  {"\n"}    map.set(nums[i], i);
-                  {"\n"}  {"}"}
-                  {"\n"}
-                  {"\n"}  <span className="text-code-keyword">return</span> [-1, -1];
-                  {"\n"}{"}"}
-                </code>
-              </pre>
-            </div>
-          </div>
-        </div>
-        
-        {/* Features Section */}
-        <div className="py-16 space-y-12">
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold">Why Practice Here?</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              AlgoArena provides a focused environment to sharpen your algorithmic problem-solving skills.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8 mt-12">
-            <div className="bg-card border border-border rounded-lg p-6 flex flex-col items-center text-center">
-              <div className="bg-primary/20 p-3 rounded-full mb-4">
-                <Terminal className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">100+ Problems</h3>
-              <p className="text-muted-foreground">
-                A curated collection of algorithmic challenges across multiple difficulty levels.
-              </p>
-            </div>
-            
-            <div className="bg-card border border-border rounded-lg p-6 flex flex-col items-center text-center">
-              <div className="bg-primary/20 p-3 rounded-full mb-4">
-                <Code className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Multiple Languages</h3>
-              <p className="text-muted-foreground">
-                Practice with your preferred programming language including JavaScript, Python, and more.
-              </p>
-            </div>
-            
-            <div className="bg-card border border-border rounded-lg p-6 flex flex-col items-center text-center">
-              <div className="bg-primary/20 p-3 rounded-full mb-4">
-                <BookOpen className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Clear Explanations</h3>
-              <p className="text-muted-foreground">
-                Detailed problem descriptions and solutions to help you learn the underlying concepts.
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        {/* Categories Section */}
-        <div className="py-16 space-y-12">
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold">Problem Categories</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Explore problems across various algorithm and data structure categories.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {categories.map((category) => (
-              <Link 
-                key={category}
-                to={`/problems?category=${category}`}
-                className="bg-card hover:bg-card/60 border border-border rounded-lg p-4 text-center transition-colors"
-              >
-                <span className="font-medium">{category}</span>
-              </Link>
             ))}
           </div>
         </div>

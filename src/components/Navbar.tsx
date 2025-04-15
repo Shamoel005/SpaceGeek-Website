@@ -1,9 +1,16 @@
 
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Code, Home, MoreHorizontal } from "lucide-react";
+import { Rocket, Newspaper, Globe, Star, Menu, X, MoonStar } from "lucide-react";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <nav className="border-b border-border bg-card">
       <div className="container mx-auto flex items-center justify-between py-4">
@@ -12,8 +19,8 @@ const Navbar = () => {
             to="/" 
             className="text-xl font-bold flex items-center"
           >
-            <Code className="mr-2 h-6 w-6 text-primary" />
-            <span>AlgoArena</span>
+            <Rocket className="mr-2 h-6 w-6 text-primary" />
+            <span>CosmosExplorer</span>
           </Link>
         </div>
         
@@ -22,23 +29,79 @@ const Navbar = () => {
             to="/" 
             className="flex items-center text-sm font-medium hover:text-primary"
           >
-            <Home className="mr-1 h-4 w-4" />
+            <MoonStar className="mr-1 h-4 w-4" />
             Home
           </Link>
           <Link 
-            to="/problems" 
+            to="/news" 
             className="flex items-center text-sm font-medium hover:text-primary"
           >
-            <BookOpen className="mr-1 h-4 w-4" />
-            Problems
+            <Newspaper className="mr-1 h-4 w-4" />
+            News
+          </Link>
+          <Link 
+            to="/planets" 
+            className="flex items-center text-sm font-medium hover:text-primary"
+          >
+            <Globe className="mr-1 h-4 w-4" />
+            Planets
+          </Link>
+          <Link 
+            to="/discoveries" 
+            className="flex items-center text-sm font-medium hover:text-primary"
+          >
+            <Star className="mr-1 h-4 w-4" />
+            Discoveries
           </Link>
         </div>
         
-        <div className="flex items-center space-x-2">
-          <Button variant="outline" size="sm">Sign In</Button>
-          <Button size="sm">Sign Up</Button>
+        {/* Mobile menu button */}
+        <div className="md:hidden">
+          <Button variant="ghost" size="icon" onClick={toggleMenu}>
+            {isMenuOpen ? <X /> : <Menu />}
+          </Button>
         </div>
       </div>
+      
+      {/* Mobile menu */}
+      {isMenuOpen && (
+        <div className="md:hidden py-4 bg-card border-t border-border">
+          <div className="container mx-auto space-y-4">
+            <Link 
+              to="/" 
+              className="flex items-center text-sm font-medium hover:text-primary"
+              onClick={toggleMenu}
+            >
+              <MoonStar className="mr-2 h-4 w-4" />
+              Home
+            </Link>
+            <Link 
+              to="/news" 
+              className="flex items-center text-sm font-medium hover:text-primary"
+              onClick={toggleMenu}
+            >
+              <Newspaper className="mr-2 h-4 w-4" />
+              News
+            </Link>
+            <Link 
+              to="/planets" 
+              className="flex items-center text-sm font-medium hover:text-primary"
+              onClick={toggleMenu}
+            >
+              <Globe className="mr-2 h-4 w-4" />
+              Planets
+            </Link>
+            <Link 
+              to="/discoveries" 
+              className="flex items-center text-sm font-medium hover:text-primary"
+              onClick={toggleMenu}
+            >
+              <Star className="mr-2 h-4 w-4" />
+              Discoveries
+            </Link>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
