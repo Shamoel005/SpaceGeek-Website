@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,19 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				easy: "hsl(142, 76%, 36%)",
+				medium: "hsl(32, 95%, 44%)",
+				hard: "hsl(354, 70%, 54%)",
+				code: {
+					bg: "hsl(220, 13%, 18%)",
+					text: "hsl(220, 14%, 71%)",
+					keyword: "hsl(301, 63%, 69%)",
+					function: "hsl(207, 82%, 66%)",
+					string: "hsl(95, 38%, 62%)",
+					number: "hsl(29, 54%, 61%)",
+					comment: "hsl(220, 10%, 40%)",
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -70,20 +83,12 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
 				}
 			},
 			animation: {
