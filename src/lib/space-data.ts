@@ -44,7 +44,7 @@ export const planets: Planet[] = [
     gravity: "8.87 m/s²",
     averageTemp: "464°C",
     moons: 0,
-    imageUrl: "https://images.unsplash.com/photo-1610025337750-c56fecd6c179?q=80&w=800",
+    imageUrl: "https://static.vecteezy.com/system/resources/thumbnails/038/024/722/small_2x/ai-generated-venus-planet-in-space-celestial-cosmic-solar-system-astronomy-universe-galactic-planetary-photo.jpg",
     funFact: "Venus rotates in the opposite direction to most planets, meaning the Sun rises in the west and sets in the east."
   },
   {
@@ -119,7 +119,7 @@ export const planets: Planet[] = [
     gravity: "8.69 m/s²",
     averageTemp: "-195°C",
     moons: 27,
-    imageUrl: "https://images.unsplash.com/photo-1614314107768-6018061a5545?q=80&w=800",
+    imageUrl: "https://images.unsplash.com/photo-1639921884918-8d28ab2e39a4?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dXJhbnVzfGVufDB8fDB8fHww",
     funFact: "Uranus rotates on its side with an axial tilt of 98 degrees."
   },
   {
@@ -134,7 +134,7 @@ export const planets: Planet[] = [
     gravity: "11.15 m/s²",
     averageTemp: "-200°C",
     moons: 14,
-    imageUrl: "https://images.unsplash.com/photo-1614313913007-2b4ae8ce32d6?q=80&w=800",
+    imageUrl: "https://images.unsplash.com/photo-1614313913007-2b4ae8ce32d6?q=80&w=800 height-20px",
     funFact: "Neptune has the strongest winds in the Solar System, reaching up to 2,100 km/h."
   }
 ];
